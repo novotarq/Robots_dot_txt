@@ -1,13 +1,42 @@
 RobotsDotTxt
 ============
 
-Introduction goes here.
+Installation:
+
+- install as a plugin
+- run rake robots:install
+- add this route to your config/routes.rb file: match 'robots' => 'robots#index'
+- edit the config/robots.yml file
+- remove the public/robots.txt file
+
 
 
 Example
 =======
 
-Example goes here.
+-- Example robots.yml file:
+
+development:
+  firstRule:
+      userAgent:
+          - google
+          - some_other_bot
+      allow: *
+      disallow: new_post_path
+      requestRate: 1/500s
+      crawlDelay: 500
+      visitTime: 0200-0800
+  secondRule:
+      userAgent: google-mobile
+      allow: /mobile
+      disallow: /xx      
+      sitemap: /dev_sitemap.txt
+  all:
+      sitemap: /sitemap.xml
+
+
+
+As you can see, you have to specify rules per each environment. You can use YAML lists, also Rails path names. Each rule has a name.
 
 
 Copyright (c) 2011 novotarq, released under the MIT license
